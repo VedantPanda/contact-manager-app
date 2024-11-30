@@ -1,6 +1,7 @@
 package com.contactmanager.app.controllers;
 
 import com.contactmanager.app.entities.ContactUser;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,6 @@ public interface ContactMangerController {
     @PostMapping("/registerContactUser")
     public String registerContactUser(@ModelAttribute("contactUser")ContactUser contactUser,
                                       @RequestParam(value = "agreement", defaultValue = "false") Boolean agreement,
-                                      Model model);
+                                      Model model, HttpSession session);
 
 }

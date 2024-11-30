@@ -3,6 +3,7 @@ package com.contactmanager.app.controllers.impl;
 import com.contactmanager.app.controllers.ContactMangerController;
 import com.contactmanager.app.entities.ContactUser;
 import com.contactmanager.app.services.ContactManagerService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,9 +39,9 @@ public class ContactMangerControllerImpl implements ContactMangerController {
     }
 
     @Override
-    public String registerContactUser(ContactUser contactUser, Boolean agreement, Model model) {
+    public String registerContactUser(ContactUser contactUser, Boolean agreement, Model model, HttpSession session) {
         log.info("In register contact user");
-        return contactManagerService.registerContactUser(contactUser, agreement, model);
+        return contactManagerService.registerContactUser(contactUser, agreement, model, session);
     }
 
 }
