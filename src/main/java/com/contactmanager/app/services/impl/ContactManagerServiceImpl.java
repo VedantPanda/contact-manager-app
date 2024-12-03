@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 @Service
 @Slf4j
@@ -18,11 +19,16 @@ public class ContactManagerServiceImpl implements ContactManagerService {
     private ContactUserRepository contactUserRepository;
 
     @Override
-    public String registerContactUser(ContactUser contactUser, Boolean agreement, Model model, HttpSession session) {
+    public String registerContactUser(ContactUser contactUser, BindingResult bindingResult, Boolean agreement, Model model,
+                                       HttpSession session) {
         log.info("Registering Contact User");
         try{
             if(Boolean.FALSE.equals(agreement)){
                 throw new Exception("You have not agreed to the terms and conditions");
+            }
+            if(bindingResult.hasErrors()){
+                model.addAttribute("contactUser", contactUser);
+                return "signup";
             }
             contactUser.setRole("USER");
             contactUserRepository.save(contactUser);

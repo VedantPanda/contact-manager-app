@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 @Controller
 @Slf4j
@@ -39,9 +40,10 @@ public class ContactMangerControllerImpl implements ContactMangerController {
     }
 
     @Override
-    public String registerContactUser(ContactUser contactUser, Boolean agreement, Model model, HttpSession session) {
+    public String registerContactUser(ContactUser contactUser, BindingResult bindingResult, Boolean agreement, Model model,
+                                       HttpSession session) {
         log.info("In register contact user");
-        return contactManagerService.registerContactUser(contactUser, agreement, model, session);
+        return contactManagerService.registerContactUser(contactUser, bindingResult, agreement, model, session);
     }
 
 }
