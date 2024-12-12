@@ -1,6 +1,6 @@
 package com.contactmanager.app.controllers.impl;
 
-import com.contactmanager.app.controllers.ContactMangerController;
+import com.contactmanager.app.controllers.ContactManagerController;
 import com.contactmanager.app.entities.ContactUser;
 import com.contactmanager.app.services.ContactManagerService;
 import jakarta.servlet.http.HttpSession;
@@ -12,10 +12,14 @@ import org.springframework.validation.BindingResult;
 
 @Controller
 @Slf4j
-public class ContactMangerControllerImpl implements ContactMangerController {
+public class ContactManagerControllerImpl implements ContactManagerController {
+
+    private ContactManagerService contactManagerService;
 
     @Autowired
-    private ContactManagerService contactManagerService;
+    public ContactManagerControllerImpl(ContactManagerService contactManagerService){
+        this.contactManagerService = contactManagerService;
+    }
 
     @Override
     public String home(Model model){

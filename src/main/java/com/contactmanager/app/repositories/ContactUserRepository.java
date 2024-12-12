@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface ContactUserRepository extends JpaRepository<ContactUser, String> {
 
-
+    @Query("from ContactUser cu where cu.email = :email")
+    Optional<ContactUser> findByEmail(@Param("email") String email);
 
 }

@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-public interface ContactMangerController {
+@RequestMapping("/scm")
+public interface ContactManagerController {
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String home(Model model);
 
     @RequestMapping("/about")

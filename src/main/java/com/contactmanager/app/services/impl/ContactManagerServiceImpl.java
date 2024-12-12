@@ -7,6 +7,7 @@ import com.contactmanager.app.services.ContactManagerService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,12 +16,20 @@ import org.springframework.validation.BindingResult;
 @Slf4j
 public class ContactManagerServiceImpl implements ContactManagerService {
 
-    @Autowired
     private ContactUserRepository contactUserRepository;
 
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    public ContactManagerServiceImpl(ContactUserRepository contactUserRepository,
+                                     BCryptPasswordEncoder passwordEncoder){
+        this.contactUserRepository = contactUserRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
-    public String registerContactUser(ContactUser contactUser, BindingResult bindingResult, Boolean agreement, Model model,
-                                       HttpSession session) {
+    public String registerContactUser(ContactUser contactUser, BindingResult bindingResult, Boolean agreement,
+                                      Model model, HttpSession session) {
         log.info("Registering Contact User");
         try{
             if(Boolean.FALSE.equals(agreement)){
@@ -30,7 +39,8 @@ public class ContactManagerServiceImpl implements ContactManagerService {
                 model.addAttribute("contactUser", contactUser);
                 return "signup";
             }
-            contactUser.setRole("USER");
+            contactUser.setRole("CONTACT_USER");
+            contactUser.setPassword(passwordEncoder.encode(contactUser.getPassword()));
             contactUserRepository.save(contactUser);
             log.info("Registered Contact User");
             model.addAttribute("contactUser", new ContactUser());

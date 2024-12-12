@@ -1,6 +1,5 @@
 package com.contactmanager.app.entities;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 import java.util.ArrayList;
@@ -51,6 +51,7 @@ public class ContactUser {
     private boolean deleted;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contactUser")
+    @ToString.Exclude
     private List<Contact> contacts = new ArrayList<>();
 
 
