@@ -39,7 +39,7 @@ public class ContactManagerServiceImpl implements ContactManagerService {
                 model.addAttribute("contactUser", contactUser);
                 return "signup";
             }
-            contactUser.setRole("CONTACT_USER");
+            contactUser.setRole("ROLE_CONTACT_USER");
             contactUser.setPassword(passwordEncoder.encode(contactUser.getPassword()));
             contactUserRepository.save(contactUser);
             log.info("Registered Contact User");
