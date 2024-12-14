@@ -5,10 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/scm")
 public interface ContactManagerController {
@@ -27,5 +24,8 @@ public interface ContactManagerController {
                                       BindingResult bindingResult,
                                       @RequestParam(value = "agreement", defaultValue = "false") Boolean agreement,
                                       Model model, HttpSession session);
+
+    @GetMapping("/login")
+    public String login(Model model);
 
 }

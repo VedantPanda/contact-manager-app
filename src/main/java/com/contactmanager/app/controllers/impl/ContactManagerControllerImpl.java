@@ -50,4 +50,11 @@ public class ContactManagerControllerImpl implements ContactManagerController {
         return contactManagerService.registerContactUser(contactUser, bindingResult, agreement, model, session);
     }
 
+    @Override
+    public String login(Model model) {
+        log.info("In login");
+        model.addAttribute("title", "Login Page");
+        return "login";
+    }
+
 }
