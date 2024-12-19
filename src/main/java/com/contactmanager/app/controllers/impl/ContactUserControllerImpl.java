@@ -1,14 +1,28 @@
 package com.contactmanager.app.controllers.impl;
 
 import com.contactmanager.app.controllers.ContactUserController;
+import com.contactmanager.app.services.ContactUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import java.security.Principal;
 
 @Slf4j
 @Controller
 public class ContactUserControllerImpl implements ContactUserController {
+
+    private ContactUserService contactUserService;
+
+    @Autowired
+    public ContactUserControllerImpl(ContactUserService contactUserService){
+        this.contactUserService = contactUserService;
+    }
+
     @Override
-    public String dashboard() {
-        return "normal/user_dashboard";
+    public String dashboard(Model model, Principal principal) {
+        log.info("In contact user controller");
+        return contactUserService.fetchContactUser(model, principal);
     }
 }
