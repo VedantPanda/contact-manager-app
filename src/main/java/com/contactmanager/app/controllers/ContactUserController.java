@@ -11,4 +11,7 @@ public interface ContactUserController {
     @RequestMapping("/index")
     public String dashboard(Model model, Principal principal);
 
+    @RequestMapping("/addContact")
+    public String addContact(Model model, Principal principal);
+
 }

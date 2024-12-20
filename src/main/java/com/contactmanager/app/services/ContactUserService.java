@@ -8,4 +8,6 @@ public interface ContactUserService {
 
     public String fetchContactUser(Model model, Principal principal);
 
+    public String addContactUser(Model model, Principal principal);
+
 }

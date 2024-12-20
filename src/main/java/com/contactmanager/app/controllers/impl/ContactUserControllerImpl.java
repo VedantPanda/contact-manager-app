@@ -25,4 +25,10 @@ public class ContactUserControllerImpl implements ContactUserController {
         log.info("In contact user controller");
         return contactUserService.fetchContactUser(model, principal);
     }
+
+    @Override
+    public String addContact(Model model, Principal principal) {
+        log.info("In add contact controller");
+        return contactUserService.addContactUser(model, principal);
+    }
 }
