@@ -21,15 +21,13 @@ public class Contact {
 
     private String email;
 
-    private String password;
+    private String profileImage;
 
-    private String imageUrl;
-
-    private String description;
+    private String phone;
 
     private String work;
 
-    private boolean deleted;
+    private String description;
 
     @ManyToOne
     private ContactUser contactUser;

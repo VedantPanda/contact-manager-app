@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -34,6 +33,7 @@ public class ContactUserServiceImpl implements ContactUserService {
     @Override
     public String fetchContactUser(Model model, Principal principal) {
         log.info("Fetching Contact User");
+        model.addAttribute("title", "User Dashboard");
         commonData(model, principal);
         return "normal/user_dashboard";
     }

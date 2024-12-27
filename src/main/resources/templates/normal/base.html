@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-primary">
+<nav class="navbar fixed-top navbar-expand-lg bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">ContactManager</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,9 +42,9 @@
     </div>
 </nav>
 
-<div class="sidebar">
+<div class="sidebar mt-2">
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
-    <a href="#" class="item"><i class="fa-solid fa-house"></i>  Home</a>
+    <a href="/scm/contactUser/index" class="item"><i class="fa-solid fa-house"></i>  Home</a>
     <a href="#" class="item"><i class="fas fa-id-card-alt"></i>  View Contacts</a>
     <a href="/scm/contactUser/addContact" class="item"><i class="fas fa-pencil-alt"></i>  Add Contact</a>
     <a href="#" class="item"><i class="fas fa-user-circle"></i>  Your Profile</a>
@@ -53,7 +53,7 @@
     <div class="divider"></div>
 </div>
 
-<div class="content">
+<div class="content mt-5">
     <i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
     <div th:replace="${content}"></div>
 </div>
