@@ -1,4 +1,4 @@
-package com.contactmanager.app.helper;
+package com.contactmanager.app.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

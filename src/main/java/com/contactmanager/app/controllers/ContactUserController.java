@@ -1,6 +1,9 @@
 package com.contactmanager.app.controllers;
 
+import com.contactmanager.app.entities.Contact;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -13,5 +16,8 @@ public interface ContactUserController {
 
     @RequestMapping("/addContact")
     public String addContact(Model model, Principal principal);
+
+    @PostMapping("/process-contact")
+    public String processContact(@ModelAttribute Contact contact, Principal principal);
 
 }

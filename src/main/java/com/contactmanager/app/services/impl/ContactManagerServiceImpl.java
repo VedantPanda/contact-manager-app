@@ -1,7 +1,7 @@
 package com.contactmanager.app.services.impl;
 
 import com.contactmanager.app.entities.ContactUser;
-import com.contactmanager.app.helper.Message;
+import com.contactmanager.app.vo.Message;
 import com.contactmanager.app.repositories.ContactUserRepository;
 import com.contactmanager.app.services.ContactManagerService;
 import jakarta.servlet.http.HttpSession;

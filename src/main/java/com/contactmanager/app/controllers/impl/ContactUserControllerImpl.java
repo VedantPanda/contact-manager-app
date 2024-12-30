@@ -1,6 +1,7 @@
 package com.contactmanager.app.controllers.impl;
 
 import com.contactmanager.app.controllers.ContactUserController;
+import com.contactmanager.app.entities.Contact;
 import com.contactmanager.app.services.ContactUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,11 @@ public class ContactUserControllerImpl implements ContactUserController {
     public String addContact(Model model, Principal principal) {
         log.info("In add contact controller");
         return contactUserService.addContactUser(model, principal);
+    }
+
+    @Override
+    public String processContact(Contact contact, Principal principal) {
+        log.info("In process contact");
+        return contactUserService.processContact(contact, principal);
     }
 }
