@@ -11,6 +11,6 @@ public interface ContactUserService {
 
     public String addContactUser(Model model, Principal principal);
 
-    public String processContact(Contact contact, Principal principal);
+    public String processContact(Model model, Contact contact, Principal principal);
 
 }

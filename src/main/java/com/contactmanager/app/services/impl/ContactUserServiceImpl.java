@@ -2,9 +2,9 @@ package com.contactmanager.app.services.impl;
 
 import com.contactmanager.app.entities.Contact;
 import com.contactmanager.app.entities.ContactUser;
-import com.contactmanager.app.repositories.ContactRepository;
 import com.contactmanager.app.repositories.ContactUserRepository;
 import com.contactmanager.app.services.ContactUserService;
+import com.contactmanager.app.vo.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,19 +19,17 @@ public class ContactUserServiceImpl implements ContactUserService {
 
     private ContactUserRepository contactUserRepository;
 
-    private ContactRepository contactRepository;
-
     @Autowired
-    public ContactUserServiceImpl(ContactUserRepository contactUserRepository, ContactRepository contactRepository){
+    public ContactUserServiceImpl(ContactUserRepository contactUserRepository){
         this.contactUserRepository = contactUserRepository;
-        this.contactRepository = contactRepository;
     }
 
 
-    private void commonData(Model model, Principal principal){
+    private Optional<ContactUser> commonData(Model model, Principal principal){
         log.info("In common data");
         Optional<ContactUser> contactUserOptional = contactUserRepository.findByEmail(principal.getName());
         contactUserOptional.ifPresent(contactUser -> model.addAttribute("contactUser", contactUser));
+        return contactUserOptional;
     }
 
     @Override
@@ -52,23 +50,24 @@ public class ContactUserServiceImpl implements ContactUserService {
     }
 
     @Override
-    public String processContact(Contact contact, Principal principal) {
+    public String processContact(Model model, Contact contact, Principal principal) {
         log.info("In process contact service");
         try{
-            Optional<ContactUser> contactUserOptional = contactUserRepository.findByEmail(principal.getName());
+            Optional<ContactUser> contactUserOptional = commonData(model, principal);
             if(contactUserOptional.isPresent()){
                 ContactUser contactUser = contactUserOptional.get();
                 contactUser.getContacts().add(contact);
                 contact.setContactUser(contactUser);
-                contactRepository.save(contact);
+                contactUserRepository.save(contactUser);
             }
-            return "normal/add_contact_form";
+            model.addAttribute("contact", new Contact());
+            model.addAttribute("message", new Message("Contact Saved Successfully", "alert-success"));
         }
         catch (Exception e){
-//            model.addAttribute("contactUser", contactUser);
+            model.addAttribute("contact", contact);
 //            session.setAttribute("message", new Message("Something Went Wrong "+e.getMessage(),
 //                    "alert-danger"));
-            return "normal/add_contact_form";
         }
+        return "normal/add_contact_form";
     }
 }

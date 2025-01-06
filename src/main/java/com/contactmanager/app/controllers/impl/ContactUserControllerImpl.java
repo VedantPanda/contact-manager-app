@@ -34,8 +34,8 @@ public class ContactUserControllerImpl implements ContactUserController {
     }
 
     @Override
-    public String processContact(Contact contact, Principal principal) {
+    public String processContact(Model model, Contact contact, Principal principal) {
         log.info("In process contact");
-        return contactUserService.processContact(contact, principal);
+        return contactUserService.processContact(model, contact, principal);
     }
 }

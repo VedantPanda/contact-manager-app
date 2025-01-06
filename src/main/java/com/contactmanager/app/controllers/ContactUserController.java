@@ -18,6 +18,6 @@ public interface ContactUserController {
     public String addContact(Model model, Principal principal);
 
     @PostMapping("/process-contact")
-    public String processContact(@ModelAttribute Contact contact, Principal principal);
+    public String processContact(Model model, @ModelAttribute Contact contact, Principal principal);
 
 }

@@ -46,13 +46,12 @@ public class ContactManagerServiceImpl implements ContactManagerService {
             model.addAttribute("contactUser", new ContactUser());
             model.addAttribute("message", new Message("Successfully Registered", "alert-success"));
             session.setAttribute("message", new Message("Successfully Registered", "alert-success"));
-            return "signup";
         }
         catch (Exception e){
             model.addAttribute("contactUser", contactUser);
             session.setAttribute("message", new Message("Something Went Wrong "+e.getMessage(),
                     "alert-danger"));
-            return "signup";
         }
+        return "signup";
     }
 }
