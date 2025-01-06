@@ -55,6 +55,12 @@
 
 <div class="content mt-5">
     <i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
+    <div th:if="${session.message}" class="container">
+        <div th:classappend="${session.message.type}" class="alert alert-success text-center" role="alert">
+            <span th:text="${session.message.content}"></span>
+        </div>
+        <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+    </div>
     <div th:replace="${content}"></div>
 </div>
 

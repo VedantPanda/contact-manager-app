@@ -41,8 +41,6 @@ public class ContactUser {
     @Size(min = 6, message = "Min 6 characters are required")
     private String password;
 
-    private String imageUrl;
-
     @NotBlank(message = "About yourself is mandatory")
     private String about;
 

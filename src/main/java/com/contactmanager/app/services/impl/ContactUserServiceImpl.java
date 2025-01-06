@@ -5,6 +5,7 @@ import com.contactmanager.app.entities.ContactUser;
 import com.contactmanager.app.repositories.ContactUserRepository;
 import com.contactmanager.app.services.ContactUserService;
 import com.contactmanager.app.vo.Message;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,7 @@ public class ContactUserServiceImpl implements ContactUserService {
     }
 
     @Override
-    public String processContact(Model model, Contact contact, Principal principal) {
+    public String processContact(Model model, Contact contact, Principal principal, HttpSession httpSession) {
         log.info("In process contact service");
         try{
             Optional<ContactUser> contactUserOptional = commonData(model, principal);
@@ -61,12 +62,13 @@ public class ContactUserServiceImpl implements ContactUserService {
                 contactUserRepository.save(contactUser);
             }
             model.addAttribute("contact", new Contact());
-            model.addAttribute("message", new Message("Contact Saved Successfully", "alert-success"));
+            httpSession.setAttribute("message", new Message("Contact Added Successfully!",
+                    "alert-success"));
         }
         catch (Exception e){
             model.addAttribute("contact", contact);
-//            session.setAttribute("message", new Message("Something Went Wrong "+e.getMessage(),
-//                    "alert-danger"));
+            httpSession.setAttribute("message", new Message("Something Went Wrong!! Try Again ",
+                    "alert-danger"));
         }
         return "normal/add_contact_form";
     }

@@ -3,6 +3,7 @@ package com.contactmanager.app.controllers.impl;
 import com.contactmanager.app.controllers.ContactUserController;
 import com.contactmanager.app.entities.Contact;
 import com.contactmanager.app.services.ContactUserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,8 @@ public class ContactUserControllerImpl implements ContactUserController {
     }
 
     @Override
-    public String processContact(Model model, Contact contact, Principal principal) {
+    public String processContact(Model model, Contact contact, Principal principal, HttpSession httpSession) {
         log.info("In process contact");
-        return contactUserService.processContact(model, contact, principal);
+        return contactUserService.processContact(model, contact, principal, httpSession);
     }
 }

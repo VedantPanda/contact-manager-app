@@ -49,8 +49,7 @@ public class ContactManagerServiceImpl implements ContactManagerService {
         }
         catch (Exception e){
             model.addAttribute("contactUser", contactUser);
-            session.setAttribute("message", new Message("Something Went Wrong "+e.getMessage(),
-                    "alert-danger"));
+            session.setAttribute("message", new Message("Something Went Wrong! Try Again", "alert-danger"));
         }
         return "signup";
     }

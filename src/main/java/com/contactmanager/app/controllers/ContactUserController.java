@@ -1,6 +1,7 @@
 package com.contactmanager.app.controllers;
 
 import com.contactmanager.app.entities.Contact;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,6 @@ public interface ContactUserController {
     public String addContact(Model model, Principal principal);
 
     @PostMapping("/process-contact")
-    public String processContact(Model model, @ModelAttribute Contact contact, Principal principal);
+    public String processContact(Model model, @ModelAttribute Contact contact, Principal principal, HttpSession httpSession);
 
 }

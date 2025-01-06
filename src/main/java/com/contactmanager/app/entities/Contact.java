@@ -22,8 +22,6 @@ public class Contact {
 
     private String email;
 
-//    private MultipartFile profileImage;
-
     private String phone;
 
     private String work;
