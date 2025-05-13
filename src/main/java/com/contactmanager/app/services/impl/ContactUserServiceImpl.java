@@ -18,7 +18,7 @@ import java.util.Optional;
 @Slf4j
 public class ContactUserServiceImpl implements ContactUserService {
 
-    private ContactUserRepository contactUserRepository;
+    private final ContactUserRepository contactUserRepository;
 
     @Autowired
     public ContactUserServiceImpl(ContactUserRepository contactUserRepository){
@@ -71,5 +71,13 @@ public class ContactUserServiceImpl implements ContactUserService {
                     "alert-danger"));
         }
         return "normal/add_contact_form";
+    }
+
+    @Override
+    public String fetchContacts(Model model, Principal principal) {
+        log.info("Fetching Contacts");
+        commonData(model, principal);
+        model.addAttribute("title", "My Contacts");
+        return "normal/show_contacts";
     }
 }

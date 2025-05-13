@@ -15,7 +15,7 @@ import java.security.Principal;
 @Controller
 public class ContactUserControllerImpl implements ContactUserController {
 
-    private ContactUserService contactUserService;
+    private final ContactUserService contactUserService;
 
     @Autowired
     public ContactUserControllerImpl(ContactUserService contactUserService){
@@ -38,5 +38,11 @@ public class ContactUserControllerImpl implements ContactUserController {
     public String processContact(Model model, Contact contact, Principal principal, HttpSession httpSession) {
         log.info("In process contact");
         return contactUserService.processContact(model, contact, principal, httpSession);
+    }
+
+    @Override
+    public String fetchContacts(Model model, Principal principal) {
+        log.info("In fetch contacts");
+        return contactUserService.fetchContacts(model, principal);
     }
 }

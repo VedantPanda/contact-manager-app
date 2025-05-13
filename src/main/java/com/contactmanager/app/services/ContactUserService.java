@@ -14,4 +14,6 @@ public interface ContactUserService {
 
     public String processContact(Model model, Contact contact, Principal principal, HttpSession httpSession);
 
+    public String fetchContacts(Model model, Principal principal);
+
 }
